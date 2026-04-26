@@ -1,82 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARCD | Página inicial</title>
+    <link rel="stylesheet" href="../public/css/estilo.css" />
+    <link rel="stylesheet" href="img/logoARCD.png">
+  </head>
+  <body>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="background-header">
+      <header>
+            <div class="logo">
+              <a href="./index.html">
+                <img src="./img/logoARCD.png" alt="" />
+              </a>
+            </div>  
 
-    <title>AquaTech | Página Inicial</title>
+              <nav>
+            <ul class="ul">
+              <li><a href="./index.html">Início</a></li>
+              <li><a href="./Calculadora Financeira/Calculadora.html">Nossa História</a></li>
+              <li><a href="#">Contato</a></li>
+       
+            </ul>
+          </nav>
+     <a class="btn-gradiente" href="./Página de login/login.html">Login</a>
 
-    <script src="./js/sessao.js"></script>
+    </header>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-</head>
+<section class="banner">
+  <h2>Além de um esporte, uma filosofia de vida</h2>
+  <img src="./img/CrecVilaMarlene.jpg" alt="Banner principal" />
+</section>  
 
-<body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
+<section id="inicio">
+  <h2>Nossa História</h2>
+
+  <div class="nossa-historia">
+
+    <div class="historia-texto">
+      <p>
+        Em 2001 um grupo de amigos fundou uma entidade sem fins lucrativos,
+        com o objetivo de promover a prática esportiva e o desenvolvimento
+        de valores como disciplina, respeito e superação. Ao longo dos anos,
+        firmaram uma parceria com um conceituado clube em São Bernardo do Campo,
+        que permitiu expandir as atividades e atingir um público ainda maior.
+        Nosso foco principal é o Judô, esporte que, além de ser nossa principal
+        modalidade, representa nossa essência.
+      </p>
     </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
+
+    <div class="historia-imagem">
+      <img src="./img/Torneio Budokan.png" alt="Torneio Budokan" />
     </div>
+
+  </div>
+</section>
+
+<section class="sobreCREC">
+  <div class="textoCREC">
+        <h1>O que é a ARCD São Bernardo do Campo? </h1>
+        <p>A Associação Recreativa Cultural Desportiva (ARCD) ao longo de mais de duas décadas, firma parcerias, desenvolve projetos 
+        sociais e leva o tatame para dentro de escolas e comunidades de 
+        São Bernardo do Campo. Cada kimono vestido representa não apenas um 
+        treino, mas uma oportunidade — de crescer, de aprender, de se tornar 
+        um cidadão melhor.</p>
+  </div>
+
+  <div class="imgCREC">
+    <img src="" alt="">
+  </div>
+
   
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-        </div>
-      </div>
+<section id="formulario">
+  <h2>Tenho Interesse</h2>
+  <p>Preencha o formulário abaixo e entraremos em contato com você!</p>
+
+  <form action="" method="POST">
+
+    <div class="campo">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
     </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
+
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required />
+    </div>
+
+    <div class="campo">
+      <label for="telefone">Telefone / WhatsApp</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" />
+    </div>
+
+    <div class="campo">
+      <label for="idade">Idade</label>
+      <input type="number" id="idade" name="idade" placeholder="Ex: 25" min="4" max="99" />
+    </div>
+
+    <div class="campo">
+      <label for="modalidade">Modalidade de interesse</label>
+      <select id="modalidade" name="modalidade">
+        <option value="">Selecione...</option>
+        <option value="iniciacao">Iniciação ao Judô</option>
+        <option value="competicao">Judô Competição</option>
+        <option value="alto-rendimento">Alto Rendimento</option>
+        <option value="projeto-social">Projeto Social</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="mensagem">Mensagem (opcional)</label>
+      <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre você..." rows="4"></textarea>
+    </div>
+
+    <button type="submit">Enviar</button>
+
+  </form>
+</section>
+
+</section>
+      
+
+        
+    
+
+
+
     </div>
   </body>
-
 </html>
