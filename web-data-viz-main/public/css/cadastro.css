@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --preto:    #0a0a0a;
+  --preto-md: #1a1a1a;
+  --preto-lt: #2c2c2c;
+  --dourado:  #c9a84c;
+  --branco:   #f5f5f0;
+  --cinza:    #888888;
+
+  --fonte-titulo: 'Bebas Neue', sans-serif;
+  --fonte-texto:  'Lato', sans-serif;
+
+  --transicao: 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: var(--preto);
+  font-family: var(--fonte-texto);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.topo {
+
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--dourado);
+}
+
+header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 52px;
+  width: auto;
+  transition: opacity var(--transicao);
+}
+
+.logo img:hover {
+  opacity: 0.8;
+}
+
+.pagina {
+  min-height: 90dvh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--preto-lt);
+  padding: 2em 1em;
+}
+
+.formulario {
+  border-radius: 1em;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 1em;
+  border: 2px solid white;
+  gap: 0.8em;
+    margin-top: .5em;
+}
+
+.cabecalho {
+  text-align: center;
+}
+
+.logo-form {
+  height: 60px;
+  margin-bottom: 0.5em;
+}
+
+.cabecalho h2 {
+  color: var(--preto);
+  font-weight: bold;
+}
+
+.cabecalho p {
+  color: var(--cinza);
+  font-size: 0.88rem;
+}
+
+.campo {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  color: var(--preto);
+  font-weight: bold;
+}
+
+.caixa {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 1em;
+  margin-top: 0.5em;
+  border: 1px solid;
+}
+
+.caixa i {
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+
+.caixa input {
+  width: 100%;
+  border: 0;
+  height: 3em;
+  border-radius: 1em;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+}
+
+.caixa input:focus {
+  outline: 0;
+}
+
+.caixa button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4em 0.6em;
+  font-size: 1.1em;
+  color: var(--cinza);
+  transition: color var(--transicao);
+  flex-shrink: 0;
+}
+
+.caixa button:hover {
+  color: var(--preto);
+  background: none;
+}
+
+.botao {
+  padding: 1em;
+  color: white;
+  width: 70%;
+  background-color: var(--dourado);
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid var(--dourado);
+  border-radius: 4px;
+  font-family: var(--fonte-titulo);
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.botao:hover {
+  background-color: transparent;
+  color: var(--dourado);
+}
+
+.rodape {
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.rodape p a {
+  color: var(--preto);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.rodape p a:hover {
+  text-decoration: underline;
+}
+
+#cardErro {
+  display: none;
+  width: 70%;
+  padding: 0.55em 1em;
+  border-radius: 0.5em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  border-left: 4px solid #c0392b;
+  background: #fff0f0;
+  color: #c0392b;
+}

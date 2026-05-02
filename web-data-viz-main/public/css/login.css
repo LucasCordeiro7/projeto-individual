@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
+
+
+:root {
+  --preto:    #0a0a0a;
+  --preto-md: #1a1a1a;
+  --preto-lt: #2c2c2c;
+  --dourado:  #c9a84c;
+  --dourado-lt: #e0c068;
+  --branco:   #f5f5f0;
+  --cinza:    #888888;
+  --cinza-lt: #eeeeea;
+
+  --fonte-titulo: 'Bebas Neue', sans-serif;
+  --fonte-texto:  'Lato', sans-serif;
+
+  --raio: 4px;
+  --sombra: 0 8px 32px rgba(0,0,0,0.35);
+  --transicao: 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: var(--preto);
+  color: var(--preto);
+  font-family: var(--fonte-texto);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+.background-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--dourado);
+}
+
+header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.background-header .logo img {
+  align-items: center;
+}
+
+
+.btn-gradiente {
+  font-family: var(--fonte-titulo);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  padding: 0.5rem 1.6rem;
+  border: 2px solid var(--dourado);
+  color: var(--dourado);
+  border-radius: var(--raio);
+  transition: background var(--transicao), color var(--transicao);
+  white-space: nowrap;
+}
+
+.btn-gradiente:hover {
+  background: var(--dourado);
+  color: var(--preto);
+}
+
+.logo img {
+  height: 52px;
+  width: auto;
+  transition: opacity var(--transicao);
+}
+
+.logo img:hover {
+  opacity: 0.8;
+}
+
+.container2{
+height: 90dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+background-color: var(--preto-lt);
+}
+
+
+.box {
+    border-radius: 1em;
+    width: 25%;
+    height: 80%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--corPrin);
+    padding: 2em;
+    border: 2px solid white;
+    background-color: white;
+
+  
+}
+
+.box h2 {
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+    width: 70%;
+}
+
+.email,
+.senha {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 1em;
+    margin-top: .5em;
+    border: 1px solid;
+}
+
+.email i,
+.senha i {
+    padding: .5em;
+    font-size: 1.2em;
+}
+
+.email input,
+.senha input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 0;
+    height: 3em;
+    border-radius: 1em;
+}
+
+.email input:focus,
+.senha input:focus {
+    outline: 0;
+}
+
+.box button {
+    padding: 1em;
+    color: white;
+    border: 0;
+    border-color: var(--dourado) ;
+    width: 70%;
+    background-color: var(--dourado);
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid var(--dourado);
+}
+
+.box p a:hover {
+    text-decoration: underline;
+}
+
+.emailMaior p,
+.senhaMaior p,
+h2 {
+    color: var(--preto);
+    font-weight: bold;
+}
+
+p a {
+    color: var(--preto);
+    text-decoration: none;
+    font-weight: bold;
+}
