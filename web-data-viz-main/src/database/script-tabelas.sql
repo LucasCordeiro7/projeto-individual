@@ -6,57 +6,48 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
-);
+CREATE DATABASE projetoARCD;
+USE projetoARCD;
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(120),
+email VARCHAR(120),
+cpf CHAR(11),
+senha VARCHAR(45)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE aluno (
+idAluno INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+cpf CHAR(11) NOT NULL UNIQUE,
+data_nascimento DATE NOT NULL,
+faixa VARCHAR(30)  NOT NULL DEFAULT 'Branca',
+pcd CHAR(3) NOT NULL,
+transtorno CHAR (3) NOT NULL ,
+observacoes VARCHAR(300),
+CONSTRAINT chkPcd CHECK(pcd IN('sim','não')),
+CONSTRAINT chkTranstorno CHECK(transtorno IN('sim','não'))
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE frequencia (
+idFrequencia INT PRIMARY KEY AUTO_INCREMENT,
+presente TINYINT(1),
+data DATE,
+fk_aluno INT,
+fk_usuario INT,
+FOREIGN KEY (fk_aluno) REFERENCES aluno(idAluno),
+FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+CREATE TABLE nota (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nota DECIMAL(4,2),
+descricao  VARCHAR(150),
+data DATE,
+fk_aluno INT,
+fk_usuario INT,
+FOREIGN KEY (fk_aluno) REFERENCES aluno(idAluno),
+FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
