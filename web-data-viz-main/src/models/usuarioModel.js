@@ -10,10 +10,16 @@ function autenticar(email, senha) {
 }
 
 function cadastrar(nome, email, cpf, senha) {
+        console.log('entrou no model');
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, cpf, senha) 
         VALUES ('${nome}', '${email}', '${cpf}', '${senha}');
     `;
+    return database.executar(instrucaoSql);
+}
+
+function listar() {
+    var instrucaoSql = `SELECT * FROM usuario`;
     return database.executar(instrucaoSql);
 }
 

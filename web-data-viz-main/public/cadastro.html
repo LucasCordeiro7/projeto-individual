@@ -54,7 +54,7 @@
         </div>
 
         <div class="campo">
-          <label for="input_cpf">CPF</label>
+          <label for="input_cpf" value="12345678910">CPF</label>
           <div class="caixa">
         
             <input
@@ -67,7 +67,7 @@
         </div>
 
         <div class="campo">
-          <label for="input_senha">Senha</label>
+          <label for="input_senha" >Senha</label>
           <div class="caixa">
             <input
               type="password"
@@ -112,16 +112,21 @@
   <script>
     let listaUsuarios = [];
 
-    listar();
+    /* listar(); */
+
+
 
     function cadastrar() {
-      var nomeVar = nome_input.value;
-      var emailVar = email_input.value;
-      var senhaVar = senha_input.value;
-      var cpfVar = cpf_input.value;
-      var confirmacaoSenhaVar = confirmacao_senha_input.value;
+      var nomeVar = input_nome.value;
+      var emailVar = input_email.value;
+      var senhaVar = input_senha.value;
+      var cpfVar = input_cpf.value;
+      var confirmarSenhaVar = input_confirmar_senha.value;
+      var podeCadastrar = true
+      
+   
 
-      var campos = [nomeVar, emailVar, cpfVar, senhaVar, confirmarSenhaVar];
+      let campos = [nomeVar, emailVar, cpfVar, senhaVar, confirmarSenhaVar];
 
       for (let i = 0; i < campos.length; i++) {
         if (campos[i] == "") {
@@ -131,10 +136,12 @@
       }
 
       let errosSenha = [];
+      let regrasSenha = []
 
       if (senhaVar.length < 8) {
         errosSenha.push("A senha precisa ter pelo menos 8 caracteres!");
       }
+console.log(campos);
 
       if (senhaVar == senhaVar.toLowerCase()) {
         errosSenha.push("A senha precisa ter pelo menos uma letra maiúscula!");
@@ -144,7 +151,6 @@
         errosSenha.push("A senha precisa ter pelo menos um número!");
       }
 
-      // Percorre o vetor de erros e mostra cada um
       for (let i = 0; i < errosSenha.length; i++) {
         mostrarErro(errosSenha[i]);
         podeCadastrar = false;
@@ -160,6 +166,8 @@
         mostrarErro("As senhas não coincidem!");
         return false;
       }
+      console.log(podeCadastrar);
+      
 
        if (podeCadastrar) {
         fetch("/usuarios/cadastrar", {
@@ -170,7 +178,7 @@
           body: JSON.stringify({
             nomeServer:  nomeVar,
             emailServer: emailVar,
-            cpfServer:   cpfSoNumeros,
+            cpfServer:   cpfVar,
             senhaServer: senhaVar,
           }),
         })
@@ -191,6 +199,8 @@
       }
  
     }
+
+    listar()
  
     // Buscando os usuários cadastrados no banco de dados
     function listar() {
