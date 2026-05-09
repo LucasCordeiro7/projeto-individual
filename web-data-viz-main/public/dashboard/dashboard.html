@@ -34,14 +34,64 @@
   <header>
     <div class="logo">
       <a href="./index.html">
-        <img src="../img/logoARCD.png" alt="Logo ARCD"/>  
+        <img src="./img/logoARCD.png" alt="Logo ARCD" />
       </a>
     </div>
+  </header>
+</div>
 
+<main>
 
+  <p class="titulo-secao">Visão Geral</p>
+  <div class="resumo">
+    <div class="cartao">
+      <div class="numero" id="totalAtletas">0</div>
+      <div class="label">Total de Atletas</div>
+    </div>
+    <div class="cartao">
+      <div class="numero" id="mediaIdade">—</div>
+      <div class="label">Média de Idade</div>
+    </div>
+    <div class="cartao">
+      <div class="numero" id="totalPcd">0</div>
+      <div class="label">Atletas PcD</div>
+    </div>
+    <div class="cartao">
+      <div class="numero" id="totalTranstorno">0</div>
+      <div class="label">Com Transtorno</div>
+    </div>
+  </div>
 
+  <p class="titulo-secao">Distribuição</p>
+  <div class="graficos">
+    <div class="caixa-grafico">
+      <h3>Por Faixa</h3>
+      <canvas id="graficoFaixa"></canvas>
+    </div>
+    <div class="caixa-grafico">
+      <h3>Por Faixa Etária</h3>
+      <canvas id="graficoIdade"></canvas>
+    </div>
+  </div>
 
+  <p class="titulo-secao">Lista de Atletas</p>
+  <div class="caixa-tabela">
+    <h3>Cadastro Geral</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Faixa</th>
+          <th>PcD / Transtorno</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="corpoTabela"></tbody>
+    </table>
+  </div>
 
+</main>
 
 
     </div>
