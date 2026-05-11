@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="shortcut icon" href="../img/logoARCD.png" type="image/x-icon">
     <title>ARCD | Dashboard</title>
 
     
@@ -34,7 +35,7 @@
   <header>
     <div class="logo">
       <a href="./index.html">
-        <img src="./img/logoARCD.png" alt="Logo ARCD" />
+        <img src="../img/logoARCD.png" alt="Logo ARCD" />
       </a>
     </div>
   </header>
@@ -109,6 +110,194 @@
 </html>
 
 <script>
+ var faixas = [
+    { nome: 'Branca',  cor: '#dddddd' },
+    { nome: 'Cinza',   cor: '#999999' },
+    { nome: 'Azul',    cor: '#2980b9' },
+    { nome: 'Amarela', cor: '#f1c40f' },
+    { nome: 'Laranja', cor: '#e67e22' },
+    { nome: 'Verde',   cor: '#27ae60' },
+    { nome: 'Roxa',    cor: '#8e44ad' },
+    { nome: 'Marrom',  cor: '#7d4f29' },
+    { nome: 'Preta',   cor: '#444444' }
+  ];
+
+  var atletas = [
+    { nome: 'Lucas Cordeiro',     idade: 14, faixa: 'Azul',    pcd: '',         transtornos: ['TEA'],       status: 'Ativo'   },
+    { nome: 'Vinicius Garban',    idade: 22, faixa: 'Roxa',    pcd: '',         transtornos: [],            status: 'Ativo'   },
+    { nome: 'Claudio Frizzarini', idade: 67, faixa: 'Preta',   pcd: 'Auditiva', transtornos: ['TDAH'],      status: 'Ativo'   },
+    { nome: 'Diana Costa',        idade: 29, faixa: 'Marrom',  pcd: '',         transtornos: [],            status: 'Inativo' },
+    { nome: 'Eduardo Neto',       idade: 11, faixa: 'Amarela', pcd: '',         transtornos: ['Ansiedade'], status: 'Ativo'   },
+    { nome: 'Flávia Ramos',       idade: 35, faixa: 'Preta',   pcd: 'Visual',   transtornos: [],            status: 'Ativo'   }
+  ];
+
+  function calcularResumo() {
+    var total = atletas.length;
+    var somaIdades = 0;
+    var totalPcd = 0;
+    var totalTranstorno = 0;
+    var media;
+    var i;
+
+    for (i = 0; i < atletas.length; i++) {
+      somaIdades = somaIdades + atletas[i].idade;
+
+      if (atletas[i].pcd != '') {
+        totalPcd = totalPcd + 1;
+      }
+
+      if (atletas[i].transtornos.length > 0) {
+        totalTranstorno = totalTranstorno + 1;
+      }
+    }
+
+    if (total > 0) {
+      media = (somaIdades / total).toFixed(1);
+    } else {
+      media = '—';
+    }
+
+    document.getElementById('totalAtletas').innerHTML    = total;
+    document.getElementById('mediaIdade').innerHTML      = media;
+    document.getElementById('totalPcd').innerHTML        = totalPcd;
+    document.getElementById('totalTranstorno').innerHTML = totalTranstorno;
+  }
+
+  function contarPorFaixa(nomeFaixa) {
+    var total = 0;
+    var i;
+
+    for (i = 0; i < atletas.length; i++) {
+      if (atletas[i].faixa == nomeFaixa) {
+        total = total + 1;
+      }
+    }
+
+    return total;
+  }
+
+  function mostrarGraficoFaixa() {
+    var nomes = [];
+    var valores = [];
+    var cores = [];
+    var i;
+
+    for (i = 0; i < faixas.length; i++) {
+      nomes.push(faixas[i].nome);
+      valores.push(contarPorFaixa(faixas[i].nome));
+      cores.push(faixas[i].cor);
+    }
+
+    new Chart(document.getElementById('graficoFaixa'), {
+      type: 'bar',
+      data: {
+        labels: nomes,
+        datasets: [{
+          label: 'Atletas',
+          data: valores,
+          backgroundColor: cores
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { ticks: { color: '#888', stepSize: 1 }, grid: { color: '#2e2e2e' } },
+          x: { ticks: { color: '#888' }, grid: { color: '#2e2e2e' } }
+        }
+      }
+    });
+  }
+
+  function contarPorIdade(minimo, maximo) {
+    var total = 0;
+    var i;
+
+    for (i = 0; i < atletas.length; i++) {
+      if (atletas[i].idade >= minimo && atletas[i].idade <= maximo) {
+        total = total + 1;
+      }
+    }
+
+    return total;
+  }
+
+  function mostrarGraficoIdade() {
+    var faixasEtarias = ['4–10', '11–14', '15–17', '18–25', '26–40', '40+'];
+    var valores = [
+      contarPorIdade(4, 10),
+      contarPorIdade(11, 14),
+      contarPorIdade(15, 17),
+      contarPorIdade(18, 25),
+      contarPorIdade(26, 40),
+      contarPorIdade(41, 999)
+    ];
+
+    new Chart(document.getElementById('graficoIdade'), {
+      type: 'bar',
+      data: {
+        labels: faixasEtarias,
+        datasets: [{
+          label: 'Atletas',
+          data: valores,
+          backgroundColor: '#c9a84c'
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { ticks: { color: '#888', stepSize: 1 }, grid: { color: '#2e2e2e' } },
+          x: { ticks: { color: '#888' }, grid: { color: '#2e2e2e' } }
+        }
+      }
+    });
+  }
+
+  function montarEtiquetas(atleta) {
+    var html = '';
+    var i;
+
+    if (atleta.pcd != '') {
+      html = html + '<span class="etiqueta etiqueta-pcd">PcD: ' + atleta.pcd + '</span>';
+    }
+
+    for (i = 0; i < atleta.transtornos.length; i++) {
+      html = html + '<span class="etiqueta etiqueta-transtorno">' + atleta.transtornos[i] + '</span>';
+    }
+
+    if (html == '') {
+      html = '—';
+    }
+
+    return html;
+  }
+
+  function mostrarTabela() {
+    var corpo = document.getElementById('corpoTabela');
+    var html = '';
+    var atleta;
+    var i;
+
+    for (i = 0; i < atletas.length; i++) {
+      atleta = atletas[i];
+
+      html = html + '<tr>';
+      html = html + '<td>' + atleta.nome + '</td>';
+      html = html + '<td>' + atleta.idade + ' anos</td>';
+      html = html + '<td>' + atleta.faixa + '</td>';
+      html = html + '<td>' + montarEtiquetas(atleta) + '</td>';
+      html = html + '<td>' + atleta.status + '</td>';
+      html = html + '</tr>';
+    }
+
+    corpo.innerHTML = html;
+  }
+
+  calcularResumo();
+  mostrarGraficoFaixa();
+  mostrarGraficoIdade();
+  mostrarTabela();
+
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;

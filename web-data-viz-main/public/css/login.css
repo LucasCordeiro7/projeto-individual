@@ -160,7 +160,7 @@ background-color: var(--preto-lt);
 }
 
 .box button {
-    padding: 1em;
+    padding: 10px;
     color: white;
     border: 0;
     border-color: var(--dourado) ;
@@ -168,7 +168,8 @@ background-color: var(--preto-lt);
     background-color: var(--dourado);
     cursor: pointer;
     transition: 0.3s;
-    border: 2px solid var(--dourado);
+    border: 2px solid var(--dourado); 
+    margin-top: 15px;
 }
 
 .box p a:hover {
