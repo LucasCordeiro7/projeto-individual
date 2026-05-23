@@ -131,13 +131,11 @@ nav ul.ul li a::after {
   transition: width var(--transicao);
 }
 
-nav ul.ul li a:hover {
-  color: var(--dourado);
-}
 
 nav ul.ul li a:hover::after {
   width: 100%;
 }
+
 .btn-gradiente {
   font-family: var(--fonte-titulo);
   font-size: 1rem;
@@ -297,15 +295,6 @@ nav ul.ul li a:hover::after {
   position: relative;
 }
 
-#atividades h2::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 3px;
-  background: var(--dourado);
-  margin: 0.5rem auto 0;
-}
-
 .cards-atividades {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -330,46 +319,7 @@ nav ul.ul li a:hover::after {
   filter: brightness(0.5);
 }
 
-.card:hover img {
-  transform: scale(1.08);
-  filter: brightness(0.35);
-}
-
-
-.card span {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.2rem;
-  font-family: var(--fonte-titulo);
-  font-size: 1.6rem;
-  letter-spacing: 2px;
-  color: var(--branco);
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  transition: color var(--transicao);
-}
-
-.card:hover span {
-  color: var(--dourado);
-}
-.card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--dourado);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.card:hover::after {
-  transform: scaleX(1);
-}
-
+.card(img)
 
 #formulario {
   background-color: var(--preto-md);
@@ -409,57 +359,10 @@ nav ul.ul li a:hover::after {
   color: var(--dourado);
 }
 
-.campo input,
-.campo select,
-.campo textarea {
-  background: var(--preto-lt);
-  border: 1px solid #3a3a3a;
-  border-radius: var(--raio);
-  color: var(--branco);
-  font-family: var(--fonte-texto);
-  font-size: 0.95rem;
-  padding: 0.8rem 1rem;
-  outline: none;
-  transition: border-color var(--transicao);
-}
 
-.campo input::placeholder,
-.campo textarea::placeholder {
-  color: var(--cinza);
-}
-
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus {
-  border-color: var(--dourado);
-}
-
-.campo select option {
-  background: var(--preto-md);
-}
-
-.campo textarea {
-  resize: vertical;
-  min-height: 110px;
-}
-#formulario button[type="submit"] {
-  margin-top: 0.5rem;
-  padding: 0.9rem;
-  background: var(--dourado);
-  color: var(--preto);
-  font-family: var(--fonte-titulo);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  border: none;
-  border-radius: var(--raio);
-  cursor: pointer;
-  transition: background var(--transicao), transform var(--transicao);
-}
-
-#formulario button[type="submit"]:hover {
+#formulario button{
   background: var(--dourado-lt);
-  transform: translateY(-2px);
-}
+  }
 
 #acompanhe {
   padding: 5rem 2rem;
@@ -507,17 +410,6 @@ nav ul.ul li a:hover::after {
   transition: color var(--transicao);
 }
 
-.rede:hover {
-  transform: translateY(-6px);
-}
-
-.rede:hover img {
-  filter: grayscale(0) brightness(1);
-}
-
-.rede:hover span {
-  color: var(--dourado);
-}
 
 footer {
   background-color: var(--preto);
@@ -526,17 +418,3 @@ footer {
   text-align: center;
 }
 
-footer p {
-  color: var(--cinza);
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
-}
-
-footer a {
-  color: var(--dourado);
-  transition: color var(--transicao);
-}
-
-footer a:hover {
-  color: var(--dourado-lt);
-}

@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Cabeçalho */
+
+.nav{
+  background-color: black;
+  height: 70px;
+  width: 100%;
+  display: flex;
+}
+.nav-lista{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  justify-content: center;
+   margin-left: 60px
+}
+
+.nav-lista a{
+text-decoration: none;
+color: aliceblue;
+padding: 20px;
+font-size: 20px;
+}
+.nav-lista a:hover{
+  color: darkgoldenrod;
+}
+
+.nav-lista img{
+  height: 60px;
+  margin-top: 5px;
+}
+
+.botao-login{
+   text-decoration: none;
+  color: white;
+  font-size: 20px;
+
+  background-color: darkgoldenrod;
+  padding: 10px 20px;
+  border-radius: 8px;
+
+}
+.botao-login a {
+font-size: 20px;
+color: aliceblue;
+text-decoration: none;
+}
+
+/* Cabeçalho */
+
+/* INICIO MAIN */
+
+.main{
+width: 100%;
+height: 600px;
+background-image:
+   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+url("../img/tumar_crec_4k.png");
+display: flex;
+align-items: center;
+background-position: center;
+background-size: cover;
+justify-content: center;
+}
+.main h1{
+  color: #fff;
+  font-size: 80px;
+  padding: 0px 50px;
+  text-shadow:  2px 2px 5px rgba(0,0,0,0.7);;
+}
+
+
+/* FIM MAIN */
