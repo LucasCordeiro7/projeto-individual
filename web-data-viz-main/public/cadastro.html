@@ -1,249 +1,169 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCD | Cadastro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/css/cadastro.css">
+</head>
+<body>
 
-    <title>ARCD | Cadastro</title>
+  <main class="container">
 
-    <script src="./js/sessao.js"></script>
+<section class="area-formulario">
 
-    <link rel="stylesheet" href="./css/cadastro.css" />
-    <link rel="shortcut icon" href="./img/logoARCD.png" type="image/x-icon" />
-  </head>
-  <body>
-    <div class="topo">
-      <header>
-        <div class="logo">
-          <a href="./index.html">
-            <img src="./img/logoARCD.png" alt="Logo ARCD" />
-          </a>
-        </div>
-      </header>
-    </div>
+  <h1>Crie seu cadastro</h1>
+<form class="formulario">
+<input id="codigo_input" class="input" type="text" placeholder="Token de Adiministrador">
+<input id="nome_input" class="input" type="text" placeholder="Nome completo">
+<input id="email_input" class="input" type="email" placeholder="Digite seu email...">
+<input id="senha_input" class="input" type="senha" placeholder="Digite sua senha...">
+<input id="confirmacao_senha_input" class="input" type="senha" placeholder="Confirme sua senha...">
 
-    <div class="pagina">
-      <div class="formulario">
-        <div class="cabecalho">
-          <img src="./img/imgLogin.png" alt="Logo ARCD" class="logo-form" />
-          <h2>Criar sua conta</h2>
-          <p>Preencha os dados abaixo para se cadastrar</p>
-        </div>
+</form>
 
-        <div id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
+<div class="alerta_erro">
+  <div class="card_erro" id="cardErro">
+    <span id="mensagem_erro"></span>
+  </div>
+</div>
 
-        <div class="campo">
-          <label for="input_nome">Nome Completo</label>
-          <div class="caixa">
-            <input type="text" id="input_nome" placeholder="João da Silva" />
-          </div>
-        </div>
+<button class="botao" type="submit" onclick="cadastrar()">Cadastrar</button>
 
-        <div class="campo">
-          <label for="input_email">E-mail</label>
-          <div class="caixa">
-            <input
-              type="email"
-              id="input_email"
-              placeholder="seunome@email.com"
-            />
-          </div>
-        </div>
+<div class="area">
+  <span class="link">Já tem conta?<a class="link-cadastro" href="cadastro.html">Acesse aqui</a> </span>
+</div>
 
-        <div class="campo">
-          <label for="input_cpf" value="12345678910">CPF</label>
-          <div class="caixa">
-        
-            <input
-              type="text"
-              id="input_cpf"
-              placeholder="000.000.000-00"
-              maxlength="14"
-            />
-          </div>
-        </div>
+ <div id="div_aguardar" class="loading-div">
+  <img src="./assets/aguarde-orange.gif" id="loading-gif" />
+   </div>
 
-        <div class="campo">
-          <label for="input_senha" >Senha</label>
-          <div class="caixa">
-            <input
-              type="password"
-              id="input_senha"
-              placeholder="Mínimo 8 caracteres"
-            />
-            <button
-              type="button"
-              onclick="toggleSenha('input_senha', this)"
-              tabindex="-1"
-            >
-              <i class="bi bi-eye-slash"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="campo">
-          <label for="input_confirmar_senha">Confirmar Senha</label>
-          <div class="caixa">
-            <input
-              type="password"
-              id="input_confirmar_senha"
-              placeholder="Repita a senha"
-            />
-            <button
-              type="button"
-              onclick="toggleSenha('input_confirmar_senha', this)"
-              tabindex="-1"
-            >
-            </button>
-          </div>
-        </div>
-
-        <button class="botao" onclick="cadastrar()">Criar Conta</button>
-
-        <div class="rodape">
-          <p>Já possui cadastro? <a href="login.html">Entrar</a></p>
-        </div>
-      </div>
-    </div>
-  </body>
-  <script>
-    let listaUsuarios = [];
-
-    /* listar(); */
+</section>
 
 
 
-    function cadastrar() {
-      var nomeVar = input_nome.value;
-      var emailVar = input_email.value;
-      var senhaVar = input_senha.value;
-      var cpfVar = input_cpf.value;
-      var confirmarSenhaVar = input_confirmar_senha.value;
-      var podeCadastrar = true
-      
-   
+<section class="area-imagens">
+<img src="../public/img/treinoCesao.jpg">
 
-      let campos = [nomeVar, emailVar, cpfVar, senhaVar, confirmarSenhaVar];
+</main>
 
-      for (let i = 0; i < campos.length; i++) {
-        if (campos[i] == "") {
-          mostrarErro("Preencha todos os campos!");
-          return false;
-        }
-      }
-
-      let errosSenha = [];
-      let regrasSenha = []
-
-      if (senhaVar.length < 8) {
-        errosSenha.push("A senha precisa ter pelo menos 8 caracteres!");
-      }
-
-      if (senhaVar == senhaVar.toLowerCase()) {
-        errosSenha.push("A senha precisa ter pelo menos uma letra maiúscula!");
-      }
-
-      if (!/[0-9]/.test(senhaVar)) {
-        errosSenha.push("A senha precisa ter pelo menos um número!");
-      }
-
-      for (let i = 0; i < errosSenha.length; i++) {
-        mostrarErro(errosSenha[i]);
-        podeCadastrar = false;
-      }
-      for (let i = 0; i < regrasSenha.length; i++) {
-        if (regrasSenha[i].teste) {
-          mostrarErro(regrasSenha[i].mensagem);
-          return false;
-        }
-      }
-
-      if (senhaVar != confirmarSenhaVar) {
-        mostrarErro("As senhas não coincidem!");
-        return false;
-      }
-      console.log(podeCadastrar);
-      
-
-       if (podeCadastrar) {
-        fetch("/usuarios/cadastrar", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nomeServer:  nomeVar,
-            emailServer: emailVar,
-            cpfServer:   cpfVar,
-            senhaServer: senhaVar,
-          }),
-        })
-          .then(function (resposta) {
-            if (resposta.ok) {
-              mostrarErro("Cadastro realizado com sucesso! Redirecionando...");
-              setTimeout(() => {
-                window.location = "login.html";
-              }, 2000);
-            } else {
-              throw "Houve um erro ao tentar realizar o cadastro!";
-            }
-          })
-          .catch(function (erro) {
-            console.log(`#ERRO: ${erro}`);
-            mostrarErro("Houve um erro ao tentar realizar o cadastro!");
-          });
-      }
- 
-    }
-
-    listar()
- 
-    // Buscando os usuários cadastrados no banco de dados
-    function listar() {
-      fetch("/usuarios/listar", {
-        method: "GET",
-      })
-        .then(function (resposta) {
-          return resposta.json();
-        })
-        .then(function (usuarios) {
-          for (let i = 0; i < usuarios.length; i++) {
-            listaUsuarios.push(usuarios[i]);
-            console.log("Usuário adicionado: ", usuarios[i]);
-          }
-        })
-        .catch(function (erro) {
-          console.log(`#ERRO: ${erro}`);
-        });
-    }
- 
-    // Mostra a mensagem de erro na tela
-    function mostrarErro(mensagem) {
-      document.getElementById("cardErro").style.display = "block";
-      document.getElementById("mensagem_erro").innerHTML = mensagem;
-      setTimeout(sumirMensagem, 5000);
-    }
- 
-    // Esconde a mensagem de erro
-    function sumirMensagem() {
-      document.getElementById("cardErro").style.display = "none";
-    }
- 
-    // Mostra/esconde a senha
-    function toggleSenha(id, btn) {
-      const input = document.getElementById(id);
-      const icone = btn.querySelector("i");
-      if (input.type === "password") {
-        input.type = "text";
-        icone.className = "bi bi-eye";
-      } else {
-        input.type = "password";
-        icone.className = "bi bi-eye-slash";
-      }
-    }
- 
-  </script>
+</body>
 </html>
+
+<script>
+
+// Array para armazenar professores cadastradas para validação de código de ativação 
+let listaProfessoresCadastradas = [];
+
+   function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = codigo_input.value;
+    var idProfessorVincular
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaProfessoresCadastradas.length; i++) {
+      if (listaProfessoresCadastrados[i].codigo_ativacao == codigoVar) {
+        idProfessorVincular = listaProfessoresCadastrados[i].id
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        finalizarAguardar();
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idProfessorVincularServer: idProfessorVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaProfessoresCadastrados.push(empresa);
+
+            console.log("listaProfessoresCadastrados")
+            console.log(listaProfessoresCadastrados[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>

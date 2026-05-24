@@ -1,185 +1,139 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ARCD | Página inicial</title>
-    <link rel="stylesheet" href="./css/estilo.css" />
-    <link rel="shortcut icon" href="./img/logoARCD.png" type="image/x-icon">
-
- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>ARCD | Página Inicial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="./css/projeto.css" />
   </head>
+
   <body>
+    <nav class="nav">
+      <ul class="nav-lista">
+        <li>
+          <a href="">Home</a>
+        </li>
+        <li>
+          <a href="">Nossa história</a>
+        </li>
+        <li>
+          <img src="./img/logoARCD.png" alt="" />
+        </li>
+        <li>
+          <a href="">Atividades</a>
+        </li>
+        <li>
+          <a href="">Contato</a>
+        </li>
+      </ul>
 
-    <div class="background-header">
-
-      <header>
-        <div class="logo">
-          <a href="./index.html">
-            <img src="./img/logoARCD.png" alt="Logo ARCD" />
-          </a>
-        </div>
-
-        <nav>
-          <ul class="ul">
-            <li><a href="#nossa-historia">Início</a></li>
-            <li><a href="#nossa-historia">Nossa História</a></li>
-            <li><a href="#atividades">Atividades</a></li>
-            <li><a href="#formulario">Contato</a></li>
-          </ul>
-        </nav>
-
-        <a class="btn-gradiente" href="./login.html">Login</a>
-      </header>
-
-    </div>
-
-    <section class="banner">
-      <h2>Além de um esporte, uma filosofia de vida</h2>
-      <img src="./img/turmaCREC.jpeg" alt="Banner principal" />
-    </section>
-
-    <section id="nossa-historia">
-      <h2>Nossa História</h2>
-
-      <div class="nossa-historia">
-
-        <div class="historia-texto">
-          <p>
-            Em 2001, um grupo de amigos fundou uma entidade sem fins lucrativos,
-            com o objetivo de promover a prática esportiva e o desenvolvimento
-            de valores como disciplina, respeito e superação. Ao longo dos anos,
-            firmaram uma parceria com um conceituado clube em São Bernardo do Campo,
-            que permitiu expandir as atividades e atingir um público ainda maior.
-            Nosso foco principal é o Judô — esporte que, além de ser nossa principal
-            modalidade, representa nossa essência.
-          </p>
-        </div>
-
-        <div class="historia-imagem">
-          <img src="./img/Torneio Budokan.png" alt="Torneio Budokan" />
-        </div>
-
+      <div class="botao-login">
+        <a href="../public/login.html">Login</a>
       </div>
+    </nav>
+
+<!-- INICIO MAIN -->
+    <section class="main">
+<div>
+  <h1>Além de um esporte, uma filosofia de vida</h1>
+  <a href="">
+    <button class="historia">Conheça nossa história</button>
+  </a>
+  
+</div>
     </section>
+<!-- FINAL DO MAIN -->
 
-    <section class="sobreCREC">
+<!-- INÍCIO SOBRE -->
+<section class="secao-sobre">
+<div class="texto-sobre">
+<h1>Nossa História</h1>
+<p>Em 2001, um grupo de amigos fundou uma entidade sem fins lucrativos, com o objetivo de promover a prática esportiva e o desenvolvimento de valores como disciplina, respeito e superação.</p> <br>
+<p>Ao longo dos anos, firmaram uma parceria com um conceituado clube em São Bernardo do Campo, que permitiu expandir as atividades e atingir um público ainda maior. Nosso foco principal é o Judô — esporte que, além de ser nossa principal modalidade, representa nossa essência.</p>
+</div>
+<div>
+<img src="../public/img/Torneio Budokan.png" alt="Torneio Budokan - Equipe São Bernardo do Campo">
+</div>
+</section>
+<!-- FINAL SOBRE -->
 
-      <div class="textoCREC">
-        <h2>O que é a ARCD São Bernardo do Campo?</h2>
-        <p>
-          A Associação Recreativa Cultural Desportiva (ARCD) é uma entidade sem fins
-          lucrativos fundada em 2001. Ao longo de mais de duas décadas, firma parcerias,
-          desenvolve projetos sociais e leva o tatame para dentro de escolas e comunidades
-          de São Bernardo do Campo. Cada kimono vestido representa não apenas um treino,
-          mas uma oportunidade — de crescer, de aprender, de se tornar um cidadão melhor.
-        </p>
-      </div>
+<!-- COMEÇO: O QUE É -->
+<section class="sobre-arcd">
+<div class="texto-sobre-arcd">
+<h1>O QUE É A ARCD SÃO BERNARDO DO CAMPO</h1>
+<p>A <span class="destaque">Associação Desportiva de Judô</span> não é apenas mais um clube destinado a prática de atividades desportivas </p>
+<p>Muito além da prática esportiva, a associação acolhe crianças e adolescentes das escolas e comunidades da cidade, oferecendo um espaço de aprendizado, disciplina e crescimento pessoal.<br><br>
+Por meio dos projetos desenvolvidos ao longo de mais de duas décadas, inúmeros jovens passaram a ocupar o tempo com o esporte, afastando-se de situações de vulnerabilidade e encontrando no tatame uma oportunidade de construir novos caminhos. <br>Cada treino representa mais do que preparação física: simboliza respeito, responsabilidade, superação e formação cidadã.
+Atualmente existem aproximadamente <span class="destaque">750 atletas</span> contribuindo diretamente para fortalecer o esporte e incentivar novos talentos.</p>
+</div>
+<div>
+  <img src="../public/img/institutoHungaro.png" alt="">
+</div>
 
-      <div class="imgCREC">
-        <img src="./img/institutoHungaro.png" alt="ARCD São Bernardo" />
-      </div>
+</section>
 
-    </section>
+<!-- FINAL: O QUE É -->
 
-    <section id="atividades">
-      <h2>Nossas Atividades</h2>
+<section class="atividades">
+<div class="texto-atividades">
+<h1>NOSSAS ATIVIDADES</h1>
+<div class="cards">
 
-      <div class="cards-atividades">
+<div class="card">
+<img src="../public/img/Liga sesi SUB 18.jpg" alt="">
+</div>
+<div class="card">
+  <img src="../public/img/treinoCesao.jpg" alt="">
+</div>
 
-        <a href="./competicoes.html" class="card">
-          <img src="./img/Liga sesi SUB 18.jpg" alt="Competições" />
-          <span>Competições</span>
-        </a>
+<div class="card">
+<img src="../public/img/passeataMarechal.png" alt="">
+</div>
+<div class="card">
+<img src="../public/img/projetos.png" alt="">
+</div>
+</div>
+</div>
+</section>
 
-        <a href="./alto-rendimento.html" class="card">
-          <img src="./img/treinoCesao.jpg" alt="Alto Rendimento" />
-          <span>Alto Rendimento</span>
-        </a>
+<section class="formulario-interesse">
+<div class="titulo">
+<h1>TENHO INTERESSE</h1>
+<p>Preencha o formulário abaixo e entraremos em contato com você!</p>
 
-        <a href="./festivais.html" class="card">
-          <img src="./img/passeataMarechal.png" alt="Festivais" />
-          <span>Festivais</span>
-        </a>
+<label>Nome </label>
+<input type="text" id="input_nome" placeholder="Digite seu nome"> 
+<label>Email</label>
+<input type="text" id="input_nome" placeholder="Digite seu e-mail">
+<label>Telefone / WhatsApp </label>
+<input type="text" id="input_nome" placeholder="(11) 99999-9999"> 
+<label>Idade</label>
+<input type="text" id="input_nome" placeholder="Ex. 25">
+<label>Modalidade de interesse </label>
+<select name="select_modalidade" id="">
+  <option value="">Selecione...</option>
+  <option value="iniciacao_judo">Inicicação ao Judô</option>
+  <option value="competicao_judo">Judô Competição</option>
+  <option value="altoRendimento_judo">Alto Rendimento</option>
+</select><br>
+<label>Mensagem (opcional)</label>
+<textarea placeholder="Conte um pouco sobre você..."></textarea>
 
-        <a href="./projetos.html" class="card">
-          <img src="./img/projetos.png" alt="Projetos" />
-          <span>Projetos</span>
-        </a>
+<button>Enviar</button>
 
-      </div>
-    </section>
+</div>
 
-    <section id="formulario">
-      <h2>Tenho Interesse</h2>
-      <p>Preencha o formulário abaixo e entraremos em contato com você!</p>
+</section>
 
-      <form action="" method="POST">
-
-        <div class="campo">
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
-        </div>
-
-        <div class="campo">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required />
-        </div>
-
-        <div class="campo">
-          <label for="telefone">Telefone / WhatsApp</label>
-          <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" />
-        </div>
-
-        <div class="campo">
-          <label for="idade">Idade</label>
-          <input type="number" id="idade" name="idade" placeholder="Ex: 25" min="4" max="99" />
-        </div>
-
-        <div class="campo">
-          <label for="modalidade">Modalidade de interesse</label>
-          <select id="modalidade" name="modalidade">
-            <option value="">Selecione...</option>
-            <option value="iniciacao">Iniciação ao Judô</option>
-            <option value="competicao">Judô Competição</option>
-            <option value="alto-rendimento">Alto Rendimento</option>
-          </select>
-        </div>
-
-        <div class="campo">
-          <label for="mensagem">Mensagem (opcional)</label>
-          <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre você..." rows="4"></textarea>
-        </div>
-
-        <button type="submit">Enviar</button>
-
-      </form>
-    </section>
-
-    <section id="acompanhe">
-      <h2>Acompanhe-nos</h2>
-      <p>Fique por dentro de tudo que acontece na ARCD São Bernardo!</p>
-
-      <div class="redes-sociais">
-
-        <a href="https://www.instagram.com/judo_saobernardo/" target="_blank" class="rede">
-          <img src="./img/instagram.png" alt="Instagram" />
-          <span>Instagram</span>  
-        </a>
-
-        <a href="https://www.facebook.com/CRECVlMarlene" target="_blank" class="rede">
-          <img src="./img/facebook-13.png" alt="Facebook" />
-          <span>Facebook</span>
-        </a>
-
-
-      </div>
-    </section>
-
-    <footer>
+ <footer>
       <p>
         ARCD São Bernardo &nbsp;|&nbsp;
         Av. Robert Kennedy, 2113 - Jd. Beatriz, Portão II, Ginásio I &nbsp;|&nbsp;
@@ -188,6 +142,8 @@
       </p>
       <p>&copy; 2026 Lucas dos Santos Cordeiro. Todos os direitos reservados.</p>
     </footer>
+
+
 
   </body>
 </html>
