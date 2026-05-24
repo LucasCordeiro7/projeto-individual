@@ -1,79 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCD | Login</title>
 
-    <title>ARCD | Login</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/css/login.css">
 
-    <script src="./js/sessao.js"></script>
-    <link rel="shortcut icon" href="./img/logoARCD.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/login.css">
 </head>
-
 <body>
+  
+<main class="container">
 
- <div class="background-header">
+<section class="area-formulario">
 
-      <header>
-        <div class="logo">
-          <a href="./index.html">
-            <img src="./img/logoARCD.png" alt="Logo ARCD" />
-          </a>
-        </div>
+  <h1>Minha conta</h1>
+<form class="formulario">
+<input class="input" type="email" placeholder="Digite seu email...">
+<input class="input" type="senha" placeholder="Digite sua senha...">
+</form>
+<button class="botao" type="submit">Acessar</button>
 
-      </header>
-  </div>
+<div class="area">
+  <span class="link">Novo por aqui? <a class="link-cadastro" href="cadastro.html">Cadastre-se</a> </span>
+</div>
 
-        <div class="container2">
-      <div class="box">
-        <div class="logo">
-          <img src="./img/imgLogin.png" alt="" />
-        </div>
-        <div class="inputs">
-          <h2>Acesse sua conta</h2>
-
-          <div class="emailMaior">
-            <p>Email</p>
-            <div class="email">
-              <i class="bi bi-envelope"></i>
-              <input
-                type="email"
-                id="input_email"
-                placeholder="seunome@email.com"
-              />
-            </div>
-          </div>
-
-          <div class="senhaMaior">
-            <p>Senha</p>
-            <div class="senha">
-              <i class="bi bi-lock"></i>
-              <input type="password" id="input_senha" placeholder="******" />
-            </div>
-          </div>
-        </div>
-        <button onclick="ent()">Entrar</button>
-        <p>
-          Não possui cadastro?
-          <a href="./cadastro.html">Cadastre-se</a>
-        </p>
-      </div><s>
-        
-      </s>
-    </div>
+</section>
 
 
 
-  </body>
+<section class="area-imagens">
+<img src="../public/img/Prefeitura-de-Sao-Bernardo-do-Campo-realiza-nova-seletiva-para-atletas-de-judo-1.jpg" alt="Seletiva de judo ARCD">
+</section>
+
+</main>
+
+
+</body>
 </html>
-
-
-
-<script>
-
-
-</script>
-
