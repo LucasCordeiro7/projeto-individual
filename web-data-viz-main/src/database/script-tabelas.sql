@@ -6,15 +6,23 @@
 comandos para mysql server
 */
 
-CREATE DATABASE projetoARCD;
-USE projetoARCD;
+CREATE DATABASE projetoarcd;
+USE projetoarcd;
 
-CREATE TABLE usuario (
-idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(120),
+CREATE TABLE crec (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	razao_social VARCHAR(50),
+	cnpj CHAR(14),
+	codigo_ativacao VARCHAR(50)
+);
+
+CREATE TABLE professor (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45),
 email VARCHAR(120),
-cpf CHAR(11),
-senha VARCHAR(45)
+senha VARCHAR(45),
+fk_crec INT,
+FOREIGN KEY (fk_crec) REFERENCES crec(id)
 );
 
 CREATE TABLE aluno (
