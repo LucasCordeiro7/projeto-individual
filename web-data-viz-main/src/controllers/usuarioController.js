@@ -65,7 +65,7 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fk_empresa == undefined) {
+    } else if (fk_crec == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
     } else {
 

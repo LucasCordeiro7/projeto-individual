@@ -83,7 +83,7 @@ color: #fff;
 
 .formulario input[type=text],
 .formulario input[type=email],
-.formulario input[type=senha]{
+.formulario input[type=password]{
   height: 42px;
 }
 .botao{
@@ -114,6 +114,16 @@ transform: scale(1.01);
    object-fit: cover
 }
 
-.loading-div img{
-height: 40px;
+.loading-div {
+    display: none;
 }
+
+.loading-div img {
+    height: 40px;
+}
+
+
+#div_erros_login {
+  display: none
+}
+

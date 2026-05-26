@@ -14,10 +14,10 @@ function listar(req, res) {
     });
 }
 
-function listarPorUsuario(req, res) {
-    var idUsuario = req.params.idUsuario;
+function listarPorProfessor(req, res) {
+    var idProfessor = req.params.idProfessor;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    avisoModel.listarPorProfessor(idProfessor)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -63,16 +63,16 @@ function pesquisarDescricao(req, res) {
 function publicar(req, res) {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+    var idProfessor = req.params.idProfessor;
 
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (descricao == undefined) {
         res.status(400).send("A descrição está indefinido!");
-    } else if (idUsuario == undefined) {
+    } else if (idProfessor == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        avisoModel.publicar(titulo, descricao, idProfessor)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -128,7 +128,7 @@ function deletar(req, res) {
 
 module.exports = {
     listar,
-    listarPorUsuario,
+    listarPorProfessor,
     pesquisarDescricao,
     publicar,
     editar,

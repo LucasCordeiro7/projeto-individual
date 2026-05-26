@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Lexend&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../public/css/login.css">
+  <link rel="stylesheet" href="./css/login.css">
 
 </head>
 
@@ -25,8 +25,8 @@
 
       <h1>Minha conta</h1>
       <form class="formulario">
-        <input class="input" type="email" placeholder="Digite seu email...">
-        <input class="input" type="senha" placeholder="Digite sua senha...">
+        <input class="input" type="email" id="email_input" placeholder="Digite seu email...">
+        <input class="input" type="password" id="senha_input" placeholder="Digite sua senha...">
       </form>
       <button class="botao" type="submit" onclick="entrar()">Acessar</button>
 
@@ -42,6 +42,10 @@
           <span class="link">Novo por aqui? <a class="link-cadastro" href="cadastro.html">Cadastre-se</a> </span>
         </div>
 
+         <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/aguarde-orange.gif" id="loading-gif">
+                </div>
+
         <div id="div_erros_login"></div>
 
 
@@ -49,7 +53,7 @@
 
 
     <section class="area-imagens">
-      <img src="../public/img/Prefeitura-de-Sao-Bernardo-do-Campo-realiza-nova-seletiva-para-atletas-de-judo-1.jpg"
+      <img src="./img/Prefeitura-de-Sao-Bernardo-do-Campo-realiza-nova-seletiva-para-atletas-de-judo-1.jpg"
         alt="Seletiva de judo ARCD">
     </section>
 
@@ -104,7 +108,7 @@
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
