@@ -2,23 +2,23 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="shortcut icon" href="../img/logoARCD.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/logoARCD.png" type="image/x-icon">
     <title>ARCD | Dashboard</title>
 
-    
-    <link rel="stylesheet" href="./../css/dashboards.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+href="https://fonts.googleapis.com/css2?family=Lexend&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" href="./../css/dashboards.css" />
     <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -31,17 +31,39 @@
 
 <body>
 
-<div class="background-header">
-  <header>
-    <div class="logo">
-      <a href="./index.html">
-        <img src="../img/logoARCD.png" alt="Logo ARCD" />
-      </a>
+<div class="janela">
+  
+    <div class="header-left">
+        <img src="../img/logoARCD.png" alt="">
+
+        <div class="btn-nav-white">
+            <a href="./cards.html" class="botao-dashboard">
+                <i class="fa-solid fa-person-chalkboard"></i>
+            </a>
+        </div>
+
+        <div class="btn-nav-white">
+            <a href="./cards.html" class="botao-dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+            </a>
+        </div>
+
+        <div class="btn-nav-white">
+            <a href="./mural.html">
+                <i class="fa-solid fa-circle-info"></i>
+            </a>
+        </div>
+
+        <div class="btn-logout" onclick="limparSessao()">
+            <h3>Sair</h3>
+        </div>
     </div>
-  </header>
-</div>
 
 <main>
+
+      <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
 
   <p class="titulo-secao">Visão Geral</p>
   <div class="resumo">
@@ -75,41 +97,79 @@
     </div>
   </div>
 
+<div class="adicionar-atleta">
+<button onclick="abrirFormulario()">Adicionar Atleta</button>
+</div>
+
+<div id="overlay" class="overlay" onclick="fecharFormulario()"></div>
+
+<div id="meuFormulario" class="formulario" style="display: none">
+  <form action="">
+<label for="">Nome</label>
+<input type="text" id="input_nome" placeholder="Nome Completo">
+
+<label for="">Idade</label>
+<input type="text" id="input_idade" placeholder="Ex.15">
+
+<label for="">Faixa</label>
+<select id="select_faixa">
+<option value="">Selecione...</option>
+<option value="Branca">Faixa Branca</option>
+<option value="Cinza">Faixa Cinza</option>
+<option value="Azul">Faixa Azul</option>
+<option value="Amarela">Faixa Amarela</option>
+<option value="Laranja">Faixa Laranja</option>
+<option value="Verde">Faixa Verde</option>
+<option value="Roxa">Faixa Roxa</option>
+<option value="Marrom">Faixa Marrom</option>
+<option value="Preta">Faixa Preta</option>
+</select>
+
+<label for="">Pcd/Transtorno</label>
+<input type="text" id="input_pcdTranstorno" placeholder="TDAH">
+
+<label for="">Status</label>
+<select id="select_status">
+<option value="">Selecione...</option>
+<option value="Ativo">Ativo</option>
+<option value="Inativo">Inativo</option>
+</select>
+
+<div class="formulario-botoes">
+  <button type="button" onclick="fecharFormulario()">Cancelar</button>
+  <button type="button" onclick="cadastrarAtleta()">Salvar</button>
+</div>
+
+  </form>
+</div>
+
   <p class="titulo-secao">Lista de Atletas</p>
   <div class="caixa-tabela">
     <h3>Cadastro Geral</h3>
     <table>
-      <thead>
-        <tr>
           <th>Nome</th>
           <th>Idade</th>
           <th>Faixa</th>
           <th>PcD / Transtorno</th>
           <th>Status</th>
-        </tr>
-      </thead>
       <tbody id="corpoTabela"></tbody>
     </table>
   </div>
 
 </main>
 
-    </div>
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
-            </div>
-        </div>
-    </div>
-
+</div>
 
 </body>
 
 </html>
 
 <script>
- var faixas = [
+  function abrirFormulario(){
+    meuFormulario.style.display = "inline-block";
+  }
+
+  let faixas = [
     { nome: 'Branca',  cor: '#dddddd' },
     { nome: 'Cinza',   cor: '#999999' },
     { nome: 'Azul',    cor: '#2980b9' },
@@ -121,7 +181,7 @@
     { nome: 'Preta',   cor: '#444444' }
   ];
 
-  var atletas = [
+  let atletas = [
     { nome: 'Lucas Cordeiro',     idade: 14, faixa: 'Azul',    pcd: '',         transtornos: ['TEA'],       status: 'Ativo'   },
     { nome: 'Vinicius Garban',    idade: 22, faixa: 'Roxa',    pcd: '',         transtornos: [],            status: 'Ativo'   },
     { nome: 'Claudio Frizzarini', idade: 67, faixa: 'Preta',   pcd: 'Auditiva', transtornos: ['TDAH'],      status: 'Ativo'   },
@@ -130,25 +190,34 @@
     { nome: 'Flávia Ramos',       idade: 35, faixa: 'Preta',   pcd: 'Visual',   transtornos: [],            status: 'Ativo'   }
   ];
 
+  let chartFaixa = null;
+  let chartIdade = null;
+
   function calcularResumo() {
-    var total = atletas.length;
-    var somaIdades = 0;
-    var totalPcd = 0;
-    var totalTranstorno = 0;
-    var media;
-    var i;
+    let total = atletas.length;
+    let somaIdades = 0;
+    let totalPcd = 0;
+    let totalTranstorno = 0;
+    let media;
+    let i;
+
+/* percore o vetor de atletas */
 
     for (i = 0; i < atletas.length; i++) {
       somaIdades = somaIdades + atletas[i].idade;
-
+      
       if (atletas[i].pcd != '') {
         totalPcd = totalPcd + 1;
       }
+
+/* verifica se tem pcd e soma para montar a kpi */
 
       if (atletas[i].transtornos.length > 0) {
         totalTranstorno = totalTranstorno + 1;
       }
     }
+
+/* verifica quais tem transtorno e soma pra montar o card */
 
     if (total > 0) {
       media = (somaIdades / total).toFixed(1);
@@ -163,8 +232,8 @@
   }
 
   function contarPorFaixa(nomeFaixa) {
-    var total = 0;
-    var i;
+    let total = 0;
+    let i;
 
     for (i = 0; i < atletas.length; i++) {
       if (atletas[i].faixa == nomeFaixa) {
@@ -176,10 +245,10 @@
   }
 
   function mostrarGraficoFaixa() {
-    var nomes = [];
-    var valores = [];
-    var cores = [];
-    var i;
+    let nomes = [];
+    let valores = [];
+    let cores = [];
+    let i;
 
     for (i = 0; i < faixas.length; i++) {
       nomes.push(faixas[i].nome);
@@ -187,7 +256,11 @@
       cores.push(faixas[i].cor);
     }
 
-    new Chart(document.getElementById('graficoFaixa'), {
+    if (chartFaixa != null) {
+      chartFaixa.destroy();
+    }
+
+    chartFaixa = new Chart(document.getElementById('graficoFaixa'), {
       type: 'bar',
       data: {
         labels: nomes,
@@ -231,7 +304,11 @@
       contarPorIdade(41, 999)
     ];
 
-    new Chart(document.getElementById('graficoIdade'), {
+    if (chartIdade != null) {
+      chartIdade.destroy();
+    }
+
+    chartIdade = new Chart(document.getElementById('graficoIdade'), {
       type: 'bar',
       data: {
         labels: faixasEtarias,
@@ -271,10 +348,10 @@
   }
 
   function mostrarTabela() {
-    var corpo = document.getElementById('corpoTabela');
-    var html = '';
-    var atleta;
-    var i;
+    let corpo = document.getElementById('corpoTabela');
+    let html = '';
+    let atleta;
+    let i;
 
     for (i = 0; i < atletas.length; i++) {
       atleta = atletas[i];
@@ -291,245 +368,130 @@
     corpo.innerHTML = html;
   }
 
-  calcularResumo();
-  mostrarGraficoFaixa();
-  mostrarGraficoIdade();
-  mostrarTabela();
+  function abrirFormulario() {
+    document.getElementById('meuFormulario').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+  }
 
+  function fecharFormulario() {
+    document.getElementById('meuFormulario').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+  }
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  function cadastrarAtleta() {
+    var nomeVar     = document.getElementById('input_nome').value;
+    var idadeVar    = parseInt(document.getElementById('input_idade').value);
+    var faixaVar    = document.getElementById('select_faixa').value;
+    var pcdVar      = document.getElementById('input_pcdTranstorno').value;
+    var statusVar   = document.getElementById('select_status').value;
+    var fkProfessor = sessionStorage.ID_USUARIO;
 
-    let proximaAtualizacao;
+    if (nomeVar == '' || isNaN(idadeVar) || faixaVar == '' || statusVar == '') {
+      alert('Preencha todos os campos obrigatórios.');
+      return;
+    }
 
-    window.onload = exibirAquariosDoUsuario();
+    var hoje = new Date();
+    var anoNasc = hoje.getFullYear() - idadeVar;
+    var dataNasc = anoNasc + '-' + String(hoje.getMonth() + 1).padStart(2, '0') + '-' + String(hoje.getDate()).padStart(2, '0');
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
+    fetch('/alunos/cadastrar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nomeServer:        nomeVar,
+        dataNascServer:    dataNasc,
+        faixaServer:       faixaVar,
+        pcdServer:         pcdVar,
+        transtornoServer:  '',
+        statusServer:      statusVar,
+        fkProfessorServer: fkProfessor
+      })
+    })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        fecharFormulario();
+        obterDadosGrafico();
+      } else {
+        alert('Erro ao cadastrar atleta.');
+      }
+    })
+    .catch(function (erro) {
+      console.error('Erro: ', erro);
+    });
+  }
 
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-            obterDadosGrafico(item.id)
+  let proximaAtualizacao;
+
+  // O gráfico é construído com três funções:
+  // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+  // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+  // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+  // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+  // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+  // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function obterDadosGrafico() {
+    var fkProfessor = sessionStorage.ID_USUARIO;
+
+    fetch(`/alunos/${fkProfessor}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          atletas = resposta.map(function (aluno) {
+            var hoje = new Date();
+            var nasc = new Date(aluno.data_nascimento);
+            var idade = hoje.getFullYear() - nasc.getFullYear();
+
+            return {
+              nome:        aluno.nome,
+              idade:       idade,
+              faixa:       aluno.faixa,
+              pcd:         aluno.pcd || '',
+              transtornos: aluno.transtorno ? [aluno.transtorno] : [],
+              status:      aluno.status
+            };
+          });
+
+          plotarGrafico();
         });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+  }
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
-    }
+  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+  // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+  function plotarGrafico() {
+    console.log('iniciando plotagem do gráfico...');
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
+    calcularResumo();
+    mostrarGraficoFaixa();
+    mostrarGraficoIdade();
+    mostrarTabela();
+  }
 
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+  // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+  // buscando a última medida inserida em tabela contendo as capturas,
 
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function atualizarGrafico() {
+    // Atletas não precisam de atualização em tempo real.
+    // A dashboard atualiza ao cadastrar um novo atleta via cadastrarAtleta()
+  }
 
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-        }
+  obterDadosGrafico();
 
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }
-
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-
-        alterarTitulo(idAquario)
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico(resposta, idAquario);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
-
-        console.log('iniciando plotagem do gráfico...');
-
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
-
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
-
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
 </script>

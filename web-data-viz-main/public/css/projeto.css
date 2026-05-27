@@ -3,6 +3,7 @@
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
   width: 100%;
   display: flex;
   position: fixed;
+  z-index: 100;
 }
 .nav-lista{
   display: flex;
@@ -207,7 +209,7 @@ border-radius: 5px;
 display: flex;
  align-items: center;
   justify-content: center;
-   padding: 10%;
+   padding-top: 10px;
    background-color: rgb(15, 15, 15);
 }
 .texto-atividades{
@@ -281,8 +283,8 @@ display: flex;
   width: 100%;
   padding: 12px;
   border: 1px solid #444;
-  background-color: #fff
-  color: black
+  background-color: #fff;
+  color: black;
   font-size: 16px;
   outline: none;
 }
@@ -310,6 +312,10 @@ display: flex;
 
 .titulo button:hover{
   background-color: rgb(192, 147, 31);
+}
+
+link-email{
+color: #d4b04c;
 }
 
 footer {

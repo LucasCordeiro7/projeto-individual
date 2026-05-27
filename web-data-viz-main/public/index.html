@@ -31,7 +31,7 @@
           <a href="">Atividades</a>
         </li>
         <li>
-          <a href="">Contato</a>
+          <a href="#section_contato">Contato</a>
         </li>
       </ul>
 
@@ -104,7 +104,7 @@ Atualmente existem aproximadamente <span class="destaque">750 atletas</span> con
 </div>
 </section>
 
-<section class="formulario-interesse">
+<section id="section_contato" class="formulario-interesse">
 <div class="titulo">
 <h1>TENHO INTERESSE</h1>
 <p>Preencha o formulário abaixo e entraremos em contato com você!</p>
@@ -112,24 +112,25 @@ Atualmente existem aproximadamente <span class="destaque">750 atletas</span> con
 <label>Nome </label>
 <input type="text" id="input_nome" placeholder="Digite seu nome"> 
 <label>Email</label>
-<input type="text" id="input_nome" placeholder="Digite seu e-mail">
+<input type="text" id="input_email" placeholder="Digite seu e-mail">
 <label>Telefone / WhatsApp </label>
-<input type="text" id="input_nome" placeholder="(11) 99999-9999"> 
+<input type="text" id="input_telefone" placeholder="(11) 99999-9999"> 
 <label>Idade</label>
-<input type="text" id="input_nome" placeholder="Ex. 25">
+<input type="text" id="input_idade" placeholder="Ex. 25">
 <label>Modalidade de interesse </label>
-<select name="select_modalidade" id="">
+<select id="select_modalidade">
   <option value="">Selecione...</option>
-  <option value="iniciacao_judo">Inicicação ao Judô</option>
+  <option value="iniciacao_judo">Iniciação ao Judô</option>
   <option value="competicao_judo">Judô Competição</option>
   <option value="altoRendimento_judo">Alto Rendimento</option>
 </select><br>
 <label>Mensagem (opcional)</label>
-<textarea placeholder="Conte um pouco sobre você..."></textarea>
+<textarea id="input_mensagem" placeholder="Conte um pouco sobre você..."></textarea>
 
-<button>Enviar</button>
+<button onclick="enviarInteresse()">Enviar</button>
 
 </div>
+</section>
 
 </section>
 
@@ -138,7 +139,7 @@ Atualmente existem aproximadamente <span class="destaque">750 atletas</span> con
         ARCD São Bernardo &nbsp;|&nbsp;
         Av. Robert Kennedy, 2113 - Jd. Beatriz, Portão II, Ginásio I &nbsp;|&nbsp;
         São Bernardo do Campo - SP &nbsp;|&nbsp;
-        <a href="mailto:arcdsaobernardo@gmail.com">arcdsaobernardo@gmail.com</a>
+        <a class="link-email" href="mailto:arcdsaobernardo@gmail.com">arcdsaobernardo@gmail.com</a>
       </p>
       <p>&copy; 2026 Lucas dos Santos Cordeiro. Todos os direitos reservados.</p>
     </footer>
@@ -147,3 +148,51 @@ Atualmente existem aproximadamente <span class="destaque">750 atletas</span> con
 
   </body>
 </html>
+
+<script>
+
+function enviarInteresse() {
+    var nomeVar      = document.getElementById('input_nome').value;
+    var emailVar     = document.getElementById('input_email').value;
+    var telefoneVar  = document.getElementById('input_telefone').value;
+    var idadeVar     = document.getElementById('input_idade').value;
+    var modalidadeVar = document.getElementById('select_modalidade').value;
+    var mensagemVar  = document.getElementById('input_mensagem').value;
+
+    if (nomeVar == '' || emailVar == '' || telefoneVar == '') {
+      alert('Nome, email e telefone são obrigatórios.');
+      return;
+    }
+
+    fetch('/interessados/cadastrar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nomeServer:      nomeVar,
+        emailServer:     emailVar,
+        telefoneServer:  telefoneVar,
+        idadeServer:     idadeVar,
+        modalidadeServer: modalidadeVar,
+        mensagemServer:  mensagemVar,
+        fkCrecServer:    1
+      })
+    })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        alert('Interesse enviado com sucesso! Entraremos em contato em breve.');
+        document.getElementById('input_nome').value = '';
+        document.getElementById('input_email').value = '';
+        document.getElementById('input_telefone').value = '';
+        document.getElementById('input_idade').value = '';
+        document.getElementById('select_modalidade').value = '';
+        document.getElementById('input_mensagem').value = '';
+      } else {
+        alert('Erro ao enviar. Tente novamente.');
+      }
+    })
+    .catch(function (erro) {
+      console.error('Erro: ', erro);
+    });
+  }
+</script>
+

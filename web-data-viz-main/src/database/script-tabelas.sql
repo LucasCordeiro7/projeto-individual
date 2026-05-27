@@ -6,56 +6,80 @@
 comandos para mysql server
 */
 
-CREATE DATABASE projetoarcd;
+
+CCREATE DATABASE projetoarcd;
 USE projetoarcd;
 
+CREATE TABLE endereco (
+  idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+  Rua VARCHAR(45),
+  Bairro VARCHAR(45),
+  CEP CHAR(8),	
+  numero INT
+);
+
 CREATE TABLE crec (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  razao_social VARCHAR(50),
+  cnpj CHAR(14) UNIQUE,
+  codigo_ativacao VARCHAR(50) UNIQUE,
+  fkEndereco INT UNIQUE,
+  FOREIGN KEY (fkEndereco) REFERENCES endereco(idEndereco)
 );
 
 CREATE TABLE professor (
-id INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(45),
-email VARCHAR(120),
-senha VARCHAR(45),
-fk_crec INT,
-FOREIGN KEY (fk_crec) REFERENCES crec(id)
+  idProfessor INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(45),
+  email VARCHAR(120) UNIQUE,
+  senha VARCHAR(45),
+  fk_crec INT,
+  FOREIGN KEY (fk_crec) REFERENCES crec(id)
+);
+
+CREATE TABLE turma (
+  idTurma INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(45),
+  descricao VARCHAR(120)
+);
+
+CREATE TABLE professor_turma (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fkProfessor INT,
+  fkTurma INT,
+  FOREIGN KEY (fkProfessor) REFERENCES professor(idProfessor),
+  FOREIGN KEY (fkTurma) REFERENCES turma(idTurma)
 );
 
 CREATE TABLE aluno (
-idAluno INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(100) NOT NULL,
-cpf CHAR(11) NOT NULL UNIQUE,
-data_nascimento DATE NOT NULL,
-faixa VARCHAR(30)  NOT NULL DEFAULT 'Branca',
-pcd CHAR(3) NOT NULL,
-transtorno CHAR (3) NOT NULL ,
-observacoes VARCHAR(300),
-CONSTRAINT chkPcd CHECK(pcd IN('sim','não')),
-CONSTRAINT chkTranstorno CHECK(transtorno IN('sim','não'))
+  idAluno INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(45),
+  email VARCHAR(120) UNIQUE,
+  telefone CHAR(11),
+  data_nascimento DATE,
+  faixa VARCHAR(20),
+  pcd VARCHAR(45),
+  transtorno VARCHAR(45),
+  status ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
+  data_cadastro DATETIME DEFAULT NOW(),
+  fkProfessor INT,
+  FOREIGN KEY (fkProfessor) REFERENCES professor(idProfessor),
+  fkTurma INT,
+  FOREIGN KEY (fkTurma) REFERENCES turma(idTurma)
 );
 
-CREATE TABLE frequencia (
-idFrequencia INT PRIMARY KEY AUTO_INCREMENT,
-presente TINYINT(1),
-data DATE,
-fk_aluno INT,
-fk_usuario INT,
-FOREIGN KEY (fk_aluno) REFERENCES aluno(idAluno),
-FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
+CREATE TABLE interessado (
+  idInteressado INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(45),
+  email VARCHAR(120),
+  telefone CHAR(11),
+  idade INT,
+  modalidade VARCHAR(45),
+  mensagem VARCHAR(500),
+  data_cadastro DATETIME DEFAULT NOW(),
+  fk_crec INT,
+  FOREIGN KEY (fk_crec) REFERENCES crec(id)
 );
 
-CREATE TABLE nota (
-id INT PRIMARY KEY AUTO_INCREMENT,
-nota DECIMAL(4,2),
-descricao  VARCHAR(150),
-data DATE,
-fk_aluno INT,
-fk_usuario INT,
-FOREIGN KEY (fk_aluno) REFERENCES aluno(idAluno),
-FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
-);
+
+
 
