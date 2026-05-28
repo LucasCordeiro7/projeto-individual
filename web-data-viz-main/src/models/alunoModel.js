@@ -7,10 +7,10 @@ function listar(fkProfessor) {
     return database.executar(instrucaoSql);
 }
 
-function cadastrar(nome, dataNascimento, faixa, pcd, transtorno, status, fkProfessor) {
+function cadastrar(nome, data_nascimento, faixa, transtorno_pcd, observacao, fkProfessor) {  
     var instrucaoSql = `
-        INSERT INTO aluno (nome, data_nascimento, faixa, pcd, transtorno, status, fkProfessor)
-        VALUES ('${nome}', '${dataNascimento}', '${faixa}', '${pcd}', '${transtorno}', '${status}', ${fkProfessor})
+        INSERT INTO aluno (nome, data_nascimento, faixa, transtorno_pcd, observacao, fkProfessor)
+        VALUES ('${nome}', '${data_nascimento}', '${faixa}', '${transtorno_pcd}','${observacao}', ${fkProfessor})
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

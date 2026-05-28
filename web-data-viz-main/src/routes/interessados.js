@@ -7,4 +7,8 @@ router.post("/cadastrar", function (req, res) {
     interessadoController.cadastrar(req, res);
 });
 
+router.get("/listar", function (req, res) {
+    interessadoController.listar(req, res);
+});
+
 module.exports = router;

@@ -34,25 +34,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <div class="janela">
   
     <div class="header-left">
-        <img src="../img/logoARCD.png" alt="">
+        <img href="../index.html" src="../img/logoARCD.png" alt="">
 
         <div class="btn-nav-white">
-            <a href="./cards.html" class="botao-dashboard">
+            <a href="./dashboard.html" class="botao-dashboard">
                 <i class="fa-solid fa-person-chalkboard"></i>
             </a>
         </div>
 
         <div class="btn-nav-white">
-            <a href="./cards.html" class="botao-dashboard">
+            <a href="./interessados.html" class="botao-dashboard">
                 <i class="fa-solid fa-chart-pie"></i>
             </a>
         </div>
 
-        <div class="btn-nav-white">
-            <a href="./mural.html">
-                <i class="fa-solid fa-circle-info"></i>
-            </a>
-        </div>
 
         <div class="btn-logout" onclick="limparSessao()">
             <h3>Sair</h3>
@@ -74,10 +69,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <div class="cartao">
       <div class="numero" id="mediaIdade">—</div>
       <div class="label">Média de Idade</div>
-    </div>
-    <div class="cartao">
-      <div class="numero" id="totalPcd">0</div>
-      <div class="label">Atletas PcD</div>
     </div>
     <div class="cartao">
       <div class="numero" id="totalTranstorno">0</div>
@@ -108,8 +99,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <label for="">Nome</label>
 <input type="text" id="input_nome" placeholder="Nome Completo">
 
-<label for="">Idade</label>
-<input type="text" id="input_idade" placeholder="Ex.15">
+<label>Data de Nascimento</label>
+<input type="date" id="input_data_nasc">
 
 <label for="">Faixa</label>
 <select id="select_faixa">
@@ -127,12 +118,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <label for="">Pcd/Transtorno</label>
 <input type="text" id="input_pcdTranstorno" placeholder="TDAH">
-
-<label for="">Status</label>
-<select id="select_status">
-<option value="">Selecione...</option>
-<option value="Ativo">Ativo</option>
-<option value="Inativo">Inativo</option>
+<label for="">Observações</label>
+<input type="text" id="input_observacao" placeholder="Ex. não pode fazer ukemi...">
 </select>
 
 <div class="formulario-botoes">
@@ -151,10 +138,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           <th>Idade</th>
           <th>Faixa</th>
           <th>PcD / Transtorno</th>
-          <th>Status</th>
+          <th>Observações</th>
       <tbody id="corpoTabela"></tbody>
     </table>
-  </div>
+  </div>  
 
 </main>
 
@@ -181,59 +168,40 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     { nome: 'Preta',   cor: '#444444' }
   ];
 
-  let atletas = [
-    { nome: 'Lucas Cordeiro',     idade: 14, faixa: 'Azul',    pcd: '',         transtornos: ['TEA'],       status: 'Ativo'   },
-    { nome: 'Vinicius Garban',    idade: 22, faixa: 'Roxa',    pcd: '',         transtornos: [],            status: 'Ativo'   },
-    { nome: 'Claudio Frizzarini', idade: 67, faixa: 'Preta',   pcd: 'Auditiva', transtornos: ['TDAH'],      status: 'Ativo'   },
-    { nome: 'Diana Costa',        idade: 29, faixa: 'Marrom',  pcd: '',         transtornos: [],            status: 'Inativo' },
-    { nome: 'Eduardo Neto',       idade: 11, faixa: 'Amarela', pcd: '',         transtornos: ['Ansiedade'], status: 'Ativo'   },
-    { nome: 'Flávia Ramos',       idade: 35, faixa: 'Preta',   pcd: 'Visual',   transtornos: [],            status: 'Ativo'   }
-  ];
+  let atletas = []
 
   let chartFaixa = null;
   let chartIdade = null;
 
-  function calcularResumo() {
-    let total = atletas.length;
-    let somaIdades = 0;
-    let totalPcd = 0;
-    let totalTranstorno = 0;
-    let media;
-    let i;
+function calcularResumo() {
+  let total = atletas.length;
+  let somaIdades = 0;
+  let totalTranstorno = 0;
+  let media;
+  let i;
 
-/* percore o vetor de atletas */
+  for (i = 0; i < atletas.length; i++) {
+    somaIdades = somaIdades + atletas[i].idade;
 
-    for (i = 0; i < atletas.length; i++) {
-      somaIdades = somaIdades + atletas[i].idade;
-      
-      if (atletas[i].pcd != '') {
-        totalPcd = totalPcd + 1;
-      }
-
-/* verifica se tem pcd e soma para montar a kpi */
-
-      if (atletas[i].transtornos.length > 0) {
-        totalTranstorno = totalTranstorno + 1;
-      }
+    if (atletas[i].transtornoPcd != ''  && atletas[i].transtornoPcd != null) {
+      totalTranstorno = totalTranstorno + 1;
     }
-
-/* verifica quais tem transtorno e soma pra montar o card */
-
-    if (total > 0) {
-      media = (somaIdades / total).toFixed(1);
-    } else {
-      media = '—';
-    }
-
-    document.getElementById('totalAtletas').innerHTML    = total;
-    document.getElementById('mediaIdade').innerHTML      = media;
-    document.getElementById('totalPcd').innerHTML        = totalPcd;
-    document.getElementById('totalTranstorno').innerHTML = totalTranstorno;
   }
+
+  if (total > 0) {
+    media = (somaIdades / total).toFixed(1);
+  } else {
+    media = '—';
+  }
+
+  document.getElementById('totalAtletas').innerHTML    = total;
+  document.getElementById('mediaIdade').innerHTML      = media;
+  document.getElementById('totalTranstorno').innerHTML = totalTranstorno;
+}
 
   function contarPorFaixa(nomeFaixa) {
     let total = 0;
-    let i;
+    let i;  
 
     for (i = 0; i < atletas.length; i++) {
       if (atletas[i].faixa == nomeFaixa) {
@@ -243,6 +211,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     return total;
   }
+
+function calcularIdade(dataNasc) {
+  var hoje = new Date();
+  var nasc = new Date(dataNasc);
+  var idade = hoje.getFullYear() - nasc.getFullYear();
+  return idade;
+}
 
   function mostrarGraficoFaixa() {
     let nomes = [];
@@ -328,24 +303,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     });
   }
 
-  function montarEtiquetas(atleta) {
-    var html = '';
-    var i;
-
-    if (atleta.pcd != '') {
-      html = html + '<span class="etiqueta etiqueta-pcd">PcD: ' + atleta.pcd + '</span>';
-    }
-
-    for (i = 0; i < atleta.transtornos.length; i++) {
-      html = html + '<span class="etiqueta etiqueta-transtorno">' + atleta.transtornos[i] + '</span>';
-    }
-
-    if (html == '') {
-      html = '—';
-    }
-
-    return html;
+   function montarEtiquetas(atleta) {
+  if (atleta.transtornoPcd != '' && atleta.transtornoPcd != null) {
+    return '<span class="etiqueta etiqueta-transtorno">' + atleta.transtornoPcd + '</span>';
   }
+  return '—';
+}
 
   function mostrarTabela() {
     let corpo = document.getElementById('corpoTabela');
@@ -361,7 +324,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       html = html + '<td>' + atleta.idade + ' anos</td>';
       html = html + '<td>' + atleta.faixa + '</td>';
       html = html + '<td>' + montarEtiquetas(atleta) + '</td>';
-      html = html + '<td>' + atleta.status + '</td>';
+      html = html + '<td>' + (atleta.observacao || '—') + '</td>';
       html = html + '</tr>';
     }
 
@@ -380,20 +343,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
   function cadastrarAtleta() {
     var nomeVar     = document.getElementById('input_nome').value;
-    var idadeVar    = parseInt(document.getElementById('input_idade').value);
     var faixaVar    = document.getElementById('select_faixa').value;
     var pcdVar      = document.getElementById('input_pcdTranstorno').value;
-    var statusVar   = document.getElementById('select_status').value;
+    var dataNasc = document.getElementById('input_data_nasc').value;
+    var obsVar   = document.getElementById('input_observacao').value;
     var fkProfessor = sessionStorage.ID_USUARIO;
 
-    if (nomeVar == '' || isNaN(idadeVar) || faixaVar == '' || statusVar == '') {
+    if (nomeVar == '' || dataNasc=='' || faixaVar == '' ) {
       alert('Preencha todos os campos obrigatórios.');
       return;
     }
-
-    var hoje = new Date();
-    var anoNasc = hoje.getFullYear() - idadeVar;
-    var dataNasc = anoNasc + '-' + String(hoje.getMonth() + 1).padStart(2, '0') + '-' + String(hoje.getDate()).padStart(2, '0');
 
     fetch('/alunos/cadastrar', {
       method: 'POST',
@@ -403,8 +362,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         dataNascServer:    dataNasc,
         faixaServer:       faixaVar,
         pcdServer:         pcdVar,
-        transtornoServer:  '',
-        statusServer:      statusVar,
+        obsServer:         obsVar,
         fkProfessorServer: fkProfessor
       })
     })
@@ -436,39 +394,38 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
   //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
   //     Para ajustar o "select", ajuste o comando sql em src/models
-  function obterDadosGrafico() {
-    var fkProfessor = sessionStorage.ID_USUARIO;
 
-    fetch(`/alunos/${fkProfessor}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+ function obterDadosGrafico() {
+  var fkProfessor = sessionStorage.ID_USUARIO;
 
-          atletas = resposta.map(function (aluno) {
-            var hoje = new Date();
-            var nasc = new Date(aluno.data_nascimento);
-            var idade = hoje.getFullYear() - nasc.getFullYear();
+  fetch(`/alunos/${fkProfessor}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-            return {
-              nome:        aluno.nome,
-              idade:       idade,
-              faixa:       aluno.faixa,
-              pcd:         aluno.pcd || '',
-              transtornos: aluno.transtorno ? [aluno.transtorno] : [],
-              status:      aluno.status
-            };
-          });
+        atletas = [];
 
-          plotarGrafico();
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-    .catch(function (error) {
-      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-  }
+        for (var i = 0; i < resposta.length; i++) {
+         atletas.push({
+                nome:          resposta[i].nome,
+                idade:         calcularIdade(resposta[i].data_nascimento),
+                faixa:         resposta[i].faixa,
+                transtornoPcd: resposta[i].transtorno_pcd || '', 
+                observacao:    resposta[i].observacao || '',
+                status:        resposta[i].status || 'Ativo'
+              });
+        }
+
+        plotarGrafico();
+      });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+  .catch(function (error) {
+    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+  });
+}
 
   // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
   // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
@@ -493,5 +450,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   }
 
   obterDadosGrafico();
+
 
 </script>

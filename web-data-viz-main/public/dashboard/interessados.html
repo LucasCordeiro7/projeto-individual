@@ -2,119 +2,180 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../img/logoARCD.png" type="image/x-icon">
+  <title>ARCD | Interessados</title>
 
-
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
-
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/dashboards.css" />
+  <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body>
 
-    <div class="janela">
+<div class="janela">
 
-        <div class="header-left dash-header">
+  <div class="header-left">
+    <img href="../index.html" src="../img/logoARCD.png" alt="">
 
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Aquários</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
-
-        <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cards" id="cardAquarios">
-
-            </div>
-
-        </div>
-
+    <div class="btn-nav-white">
+      <a href="./dashboard.html"><i class="fa-solid fa-chart-pie"></i></a>
     </div>
 
+    <div class="btn-nav-white">
+      <a href="./interessados.html"><i class="fa-solid fa-person-chalkboard"></i></a>
+    </div>
+
+    <div class="btn-logout" onclick="limparSessao()">
+      <h3>Sair</h3>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="hello">
+      <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    </div>
+
+    <p class="titulo-secao">Visão Geral</p>
+    <div class="resumo">
+      <div class="cartao">
+        <div class="numero" id="totalInteressados">0</div>
+        <div class="label">Total de Interessados</div>
+      </div>
+      <div class="cartao">
+        <div class="numero" id="totalIniciacao">0</div>
+        <div class="label">Iniciação ao Judô</div>
+      </div>
+      <div class="cartao">
+        <div class="numero" id="totalCompeticao">0</div>
+        <div class="label">Judô Competição</div>
+      </div>
+      <div class="cartao">
+        <div class="numero" id="totalAltoRendimento">0</div>
+        <div class="label">Alto Rendimento</div>
+      </div>
+    </div>
+
+    <p class="titulo-secao">Lista de Interessados</p>
+    <div class="caixa-tabela">
+      <h3>Cadastro Geral</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Idade</th>
+            <th>Modalidade</th>
+            <th>Data de Cadastro</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+      </table>
+    </div>
+
+  </main>
+
+</div>
+
 </body>
+</html>
 
 <script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
+  let interessados = [];
+
+  function calcularResumo() {
+    let total               = interessados.length;
+    let totalIniciacao      = 0;
+    let totalCompeticao     = 0;
+    let totalAltoRendimento = 0;
+    let i;
+
+    for (i = 0; i < interessados.length; i++) {
+      if (interessados[i].modalidade == 'iniciacao_judo') {
+        totalIniciacao = totalIniciacao + 1;
+      } else if (interessados[i].modalidade == 'competicao_judo') {
+        totalCompeticao = totalCompeticao + 1;
+      } else if (interessados[i].modalidade == 'altoRendimento_judo') {
+        totalAltoRendimento = totalAltoRendimento + 1;
+      }
     }
 
-</script>
+    document.getElementById('totalInteressados').innerHTML   = total;
+    document.getElementById('totalIniciacao').innerHTML      = totalIniciacao;
+    document.getElementById('totalCompeticao').innerHTML     = totalCompeticao;
+    document.getElementById('totalAltoRendimento').innerHTML = totalAltoRendimento;
+  }
 
-</html>
+
+  function formatarModalidade(modalidade) {
+    if (modalidade == 'iniciacao_judo')      return 'Iniciação ao Judô';
+    if (modalidade == 'competicao_judo')     return 'Judô Competição';
+    if (modalidade == 'altoRendimento_judo') return 'Alto Rendimento';
+    return modalidade;
+  }
+
+  function mostrarTabela() {
+    var corpo = document.getElementById('corpoTabela');
+    var html  = '';
+    var interessado;
+    var i;
+
+    for (i = 0; i < interessados.length; i++) {
+      interessado = interessados[i];
+
+      html = html + '<tr>';
+      html = html + '<td>' + interessado.nome + '</td>';
+      html = html + '<td>' + interessado.email + '</td>';
+      html = html + '<td>' + interessado.telefone + '</td>';
+      html = html + '<td>' + interessado.idade + ' anos</td>';
+      html = html + '<td>' + formatarModalidade(interessado.modalidade) + '</td>';
+      html = html + '<td>' + interessado.data_cadastro + '</td>';
+      html = html + '</tr>';
+    }
+
+    corpo.innerHTML = html;
+  }
+
+  function obterInteressados() {
+    fetch('/interessados/listar', { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log('Dados recebidos: ' + JSON.stringify(resposta));
+
+            interessados = [];
+
+            for (var i = 0; i < resposta.length; i++) {
+              interessados.push({
+                nome:          resposta[i].nome,
+                email:         resposta[i].email,
+                telefone:      resposta[i].telefone,
+                idade:         resposta[i].idade,
+                modalidade:    resposta[i].modalidade,
+                data_cadastro: resposta[i].data_cadastro
+              });
+            }
+
+            calcularResumo();
+            mostrarTabela();
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error('Erro: ' + error.message);
+      });
+  }
+
+  obterInteressados();
+</script>

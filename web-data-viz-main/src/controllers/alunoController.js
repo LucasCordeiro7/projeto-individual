@@ -18,25 +18,22 @@ function listar(req, res) {
 
 function cadastrar(req, res) {
     var nome         = req.body.nomeServer;
-    var dataNasc     = req.body.dataNascServer;
+    var data_nascimento     = req.body.dataNascServer;
     var faixa        = req.body.faixaServer;
-    var pcd          = req.body.pcdServer;
-    var transtorno   = req.body.transtornoServer;
-    var status       = req.body.statusServer;
+    var transtorno_pcd     = req.body.pcdServer;
+    var observacao       = req.body.obsServer;
     var fkProfessor  = req.body.fkProfessorServer;
 
     if (nome == undefined) {
         res.status(400).send("Nome está undefined!");
-    } else if (dataNasc == undefined) {
+    } else if (data_nascimento == undefined) {
         res.status(400).send("Data de nascimento está undefined!");
     } else if (faixa == undefined) {
         res.status(400).send("Faixa está undefined!");
-    } else if (status == undefined) {
-        res.status(400).send("Status está undefined!");
     } else if (fkProfessor == undefined) {
         res.status(400).send("Professor está undefined!");
     } else {
-        alunoModel.cadastrar(nome, dataNasc, faixa, pcd, transtorno, status, fkProfessor)
+        alunoModel.cadastrar(nome, data_nascimento, faixa, transtorno_pcd, observacao, fkProfessor)
             .then((resultado) => {
                 res.status(201).json(resultado);
             })

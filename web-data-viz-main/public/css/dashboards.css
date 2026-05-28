@@ -174,7 +174,7 @@ main {
 
     .caixa-grafico h3 {
       font-size: 0.75rem;
-      color: #666;
+      color: #fff;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 18px;
@@ -340,6 +340,17 @@ main {
       padding: 2px 8px;
       margin-right: 4px;
     }
+
+ td, th {
+  vertical-align: middle;
+  text-align: left;
+  padding: 10px 12px;
+}
+
+td:hover {
+  white-space: normal;
+  overflow: visible;
+}
 
     .etiqueta-pcd        { background: #1a4a6e; color: #5dade2; }
     .etiqueta-transtorno { background: #4a3800; color: #f1c40f; } 
