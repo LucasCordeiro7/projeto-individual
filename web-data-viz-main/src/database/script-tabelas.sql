@@ -7,14 +7,14 @@ comandos para mysql server
 */
 
 
-CCREATE DATABASE projetoarcd;
+CREATE DATABASE projetoarcd;
 USE projetoarcd;
 
 CREATE TABLE endereco (
   idEndereco INT PRIMARY KEY AUTO_INCREMENT,
   Rua VARCHAR(45),
   Bairro VARCHAR(45),
-  CEP CHAR(8),	
+  CEP CHAR(8),
   numero INT
 );
 
@@ -57,9 +57,8 @@ CREATE TABLE aluno (
   telefone CHAR(11),
   data_nascimento DATE,
   faixa VARCHAR(20),
-  pcd VARCHAR(45),
-  transtorno VARCHAR(45),
-  status ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
+  transtorno_pcd VARCHAR(45),
+  observacao VARCHAR(120),
   data_cadastro DATETIME DEFAULT NOW(),
   fkProfessor INT,
   FOREIGN KEY (fkProfessor) REFERENCES professor(idProfessor),
@@ -80,6 +79,9 @@ CREATE TABLE interessado (
   FOREIGN KEY (fk_crec) REFERENCES crec(id)
 );
 
+ALTER TABLE aluno MODIFY COLUMN data_cadastro DATE DEFAULT (CURRENT_DATE);
 
+INSERT INTO crec(codigo_ativacao) VALUES
+('arcd2026');
 
-
+SELECT *FROM aluno;

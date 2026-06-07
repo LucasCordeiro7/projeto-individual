@@ -95,6 +95,7 @@ function listar() {
   if (codigoVar == '')           erros.push('Código de administrador é obrigatório.');
 
   let codigoValido = false;
+  
   for (let i = 0; i < listaCrecCadastrados.length; i++) {
     if (listaCrecCadastrados[i].codigo_ativacao == codigoVar) {
       idCrecVincular = listaCrecCadastrados[i].id;

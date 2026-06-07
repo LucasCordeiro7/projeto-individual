@@ -124,13 +124,14 @@
   }
 
   function mostrarTabela() {
-    var corpo = document.getElementById('corpoTabela');
-    var html  = '';
-    var interessado;
-    var i;
+    let html  = '';
+    let interessado;
+    let i;
 
     for (i = 0; i < interessados.length; i++) {
       interessado = interessados[i];
+
+      let data = new Date(interessado.data_cadastro).toLocaleDateString('pt-BR')
 
       html = html + '<tr>';
       html = html + '<td>' + interessado.nome + '</td>';
@@ -138,11 +139,11 @@
       html = html + '<td>' + interessado.telefone + '</td>';
       html = html + '<td>' + interessado.idade + ' anos</td>';
       html = html + '<td>' + formatarModalidade(interessado.modalidade) + '</td>';
-      html = html + '<td>' + interessado.data_cadastro + '</td>';
+      html = html + '<td>' + data + '</td>';
       html = html + '</tr>';
     }
 
-    corpo.innerHTML = html;
+    corpoTabela.innerHTML = html;
   }
 
   function obterInteressados() {

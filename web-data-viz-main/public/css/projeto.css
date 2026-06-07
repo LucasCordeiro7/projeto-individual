@@ -250,10 +250,11 @@ display: flex;
 
 .formulario-interesse{
   background-color: rgb(15, 15, 15);
-  padding: 7  0px 20px;
+  padding-top: 80px;
   display: flex;
   justify-content: center;
-  height: 800px;
+  width: 100%;
+  padding-bottom: 30px;
 }
 
 .titulo{
@@ -314,8 +315,10 @@ display: flex;
   background-color: rgb(192, 147, 31);
 }
 
-link-email{
+.link-email{
 color: #d4b04c;
+text-decoration: none;
+list-style: none;
 }
 
 footer {
